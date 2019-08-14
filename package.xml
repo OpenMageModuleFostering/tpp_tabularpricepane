@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>TPP_TabularPricePane</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL) v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Tabular Price Pane</summary>
+    <description>Display products filtered by price, product title and categories with different layout.</description>
+    <notes>Install this module using Magento Connect Manager or manually file copy as per module directory structure.</notes>
+    <authors><author><name>ikhodal Team</name><user>ikhodal</user><email>helpdesk@ikhodal.com</email></author></authors>
+    <date>2016-02-08</date>
+    <time>23:36:01</time>
+    <contents><target name="mage"><dir name="."><dir name="app"><dir name="design"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="tabularpricepane.xml" hash="b3e551abe93452031933e27d0c054d45"/></dir><dir name="template"><dir name="tabularpricepane"><file name="ajax_load_more.phtml" hash="836cf8a4062c71a0dba846b4a77ef6e2"/><file name="ajax_products.phtml" hash="ef613cabecc1610e5322990ddb14f22b"/><file name="pane_style_1.phtml" hash="f16c1fa99ce6ce5788870d4cada07870"/><file name="pane_style_2.phtml" hash="b1069d1051174482d3d1b8729c70be2f"/><file name="pane_style_3.phtml" hash="55253223ab6f806eea789447af4c30f3"/><file name="tab_style_1.phtml" hash="7d091477996e4e5fd7e0d45398067a3f"/><file name="tab_style_2.phtml" hash="df8064f00498f073ee401203ed0d89cf"/><file name="tab_style_3.phtml" hash="a6caf373b9937703586a440f1418f0a8"/></dir></dir></dir></dir></dir></dir><dir name="etc"><dir name="modules"><file name="TPP_TabularPricePane.xml" hash="9a4cd0b549e0ad6fd5d86dd5bf57d850"/></dir></dir><dir name="code"><dir name="community"><dir name="TPP"><dir name="TabularPricePane"><dir name="Block"><file name="List.php" hash="40c969bf5741c1ce0b263715a0030d5a"/><dir name="Html"><file name="Head.php" hash="252e2f239141bbc406f17075bac9de3b"/></dir></dir><dir name="controllers"><file name="IndexController.php" hash="e569e23ef074c421d75267b0c6e25b6d"/></dir><dir name="etc"><file name="config.xml" hash="616808b840433972b8421977a42b2f12"/><file name="widget.xml" hash="8aeb0e517ad2139a5c0caaa7575dcc42"/></dir><dir name="Helper"><file name="Data.php" hash="672e4afe75147ce29b3bd22ac37ca8b5"/></dir><dir name="Model"><file name="Filters.php" hash="7e35aa811110eeccd1e5080926d259be"/></dir></dir></dir></dir></dir></dir><dir name="js"><dir name="tpp"><file name="tabularpricepane.js" hash="191edce72cb9686a9840e660e79eed97"/><file name="jquery-1.10.2.min.js" hash="841dc30647f93349b7d8ef61deebe411"/></dir></dir><dir name="skin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="tpp"><file name="tabularpricepane.css" hash="6a52d63d68fcdd29aba6e7bdf552d92c"/></dir></dir><dir name="images"><dir name="tpp"><file name="loader.gif" hash="fa35cca340bd4fa098babcaa4bed65df"/><file name="searchicon.png" hash="7d01889a4eb3a3d8ac5032f616916048"/><file name="view.png" hash="d0c16266a4b3d59c70930255cf3c1f81"/></dir></dir></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.3.21</min><max>5.6.8</max></php></required></dependencies>
+</package>

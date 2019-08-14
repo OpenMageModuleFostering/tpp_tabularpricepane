@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/** 
+ *
+ * Tabular Price Pane
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to helpdesk@ikhodal.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package     TPP_TabularPricePane
+ * @copyright   Copyright (c) 2016-2017 ikhodal (http://www.ikhodal.com).
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<modules>
+		<TPP_TabularPricePane>
+			<version>0.0.0.1</version>
+		</TPP_TabularPricePane>
+	</modules>
+	<global>
+		<helpers>
+			<tabularpricepane>
+				<class>TPP_TabularPricePane_Helper</class>
+			</tabularpricepane>
+		</helpers>
+		<blocks>
+			 <tabularpricepane>
+				<class>TPP_TabularPricePane_Block</class>
+			 </tabularpricepane> 
+			 <page>
+				<rewrite>
+					<html_head>TPP_TabularPricePane_Block_Html_Head</html_head>
+				</rewrite>	
+			 </page>
+		</blocks>
+		<models>
+			<tabularpricepane>
+				<class>TPP_TabularPricePane_Model</class>
+			</tabularpricepane>
+		</models> 
+	</global> 
+	<frontend>
+		<routers>
+			<tabularpricepane>
+				<use>standard</use>
+				<args>
+					<module>TPP_TabularPricePane</module>
+					<frontName>tabularpricepane</frontName>
+				</args>
+			</tabularpricepane>
+		</routers>
+		<layout>
+			<updates>
+				<tabularpricepane>
+					<file>tabularpricepane.xml</file>
+				</tabularpricepane>
+			</updates>
+		</layout>
+	</frontend>
+</config>

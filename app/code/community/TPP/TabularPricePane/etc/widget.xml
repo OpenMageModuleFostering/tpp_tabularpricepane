@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<!--
+/** 
+ *
+ * Tabular Price Pane
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to helpdesk@ikhodal.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package     TPP_TabularPricePane
+ * @copyright   Copyright (c) 2016-2017 ikhodal (http://www.ikhodal.com).
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<widgets>
+    <tabularpricepane_list type="tabularpricepane/list" translate="name description" module="tabularpricepane">
+        <name>Tabular Price Pane</name>
+        <description>Tabular Price Pane Widget for Magento.</description>
+        <parameters>	  
+			<widget_title>
+				<label>Widget title</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>Tabular Price Pane</value>
+				<description>Set the title for widget heading. You can also hide it by "Hide widget title?" field selection to "Yes" on this form.</description>	
+			</widget_title>
+			
+			<price_from>
+				<label>Price from</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>0</value>
+				<description>Add the integer value for starting the price tab filter.</description>	
+			</price_from>
+			
+			<price_to>
+				<label>Price to</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>1000</value>
+				<description>Add the integer value for ending the price tab filter or Enter the '0'(zero) value to auto calculate it's value as maximum of store price.</description>			
+			</price_to>
+			
+			<price_difference>
+				<label>Price difference</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>100</value>
+				<description>Add the integer value to divide the From and To values in the specified difference or Enter the '0'(zero) value to auto calculate it's value like (priceDifference = priceTo - priceFrom).</description>				
+			</price_difference>
+			
+			 <cat_path translate="label">
+                <visible>1</visible>
+                <required>0</required>
+                <label>Default category</label>
+                <type>label</type>
+                <helper_block>
+                    <type>adminhtml/catalog_category_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select category</open>
+                        </button>
+                    </data>
+                </helper_block>
+				<description>Select any category as default to load the products on first priority.</description>
+            </cat_path>
+			
+			<number_of_product_display>
+				<label>Number of products to display</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>4</value>
+				<description>Add the integer value to load default number of products on price tab clicking.</description>				
+			</number_of_product_display>
+			 
+			<price_text_color>
+				<label>Product price text color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#000</value>
+				<description>Add color code or color name for product price.</description>
+			</price_text_color>
+			
+			<title_text_color>
+				<label>Product title text color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#000</value>
+				<description>Add color code or color name for product title name.</description>	
+			</title_text_color>
+			
+			<price_tab_text_color>
+				<label>From - To price tab text color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#000</value>
+				<description>Add color code or color name for (From - To) price tab text.</description>	
+			</price_tab_text_color>
+			
+			<price_tab_background_color>
+				<label>From - To price tab background color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#F1F1F1</value>
+				<description>Add color code or color name for (From - To) price tab background.</description>	
+			</price_tab_background_color>
+			
+			<header_text_color>
+				<label>Widget title text color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#FFF</value>
+				<description>Add color code or color name for widget heading title.</description>	
+			</header_text_color>
+			
+			<header_background_color>
+				<label>Widget title background color</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>#19D56E</value>
+				<description>Add color code or color name for widget heading background.</description>
+			</header_background_color>
+			
+			<tp_widget_width>
+				<label>Widget Width</label>				
+				<visible>1</visible>
+				<required>1</required>
+				<type>text</type>
+				<value>100%</value>
+				<description>Add width of widget in pixel or percentage. Default width is 100%</description>
+			</tp_widget_width>
+			
+			<display_title_price_over_image>
+				<label>Display title and price over image?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes> 
+				</values>	 
+				<description>Select "Yes" to hide title and price with add to cart button below of product image and display over product image when product image mouse hover. Default is "No" to display it below product image.</description>
+			</display_title_price_over_image>
+			
+			<hide_widget_title>
+				<label>Hide widget title?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes>
+				</values>
+				<description>Select "Yes" to hide widget heading. Default is "No" to display it.</description>
+			</hide_widget_title>
+			
+			<hide_searchbox>
+				<label>Hide search textbox?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes>  
+				</values>
+				<description>Select "Yes" to hide search textbox field. Default is "No" to display it.</description>
+			</hide_searchbox>
+			<hide_categorybox>
+				<label>Hide category dropdown?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes>
+				</values>
+				<description>Select "Yes" to hide category dropdown field. Default is "No" to display it.</description>
+			</hide_categorybox> 
+			
+			<hide_product_title>
+				<label>Hide product title?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes>  
+				</values>
+				<description>Select "Yes" to hide the product title. Default is "No" to display it.</description>	
+			</hide_product_title>
+			
+			<hide_product_price>
+				<label>Hide product price?</label>				
+				<visible>1</visible>
+				<required>0</required>
+				<type>select</type>
+				<values>
+					<no translate="label">
+						<label>No</label>
+						<value>no</value>
+					</no>
+					<yes translate="label">
+						<label>Yes</label>
+						<value>yes</value>
+					</yes>  
+				</values>
+				<description>Select "Yes" to hide the product price. Default is "No" to display it.</description>		
+			</hide_product_price>       
+            <template translate="label">
+                <label>Fronted template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+					<pane_style_1 translate="label">
+                        <value>tabularpricepane/pane_style_1.phtml</value>
+                        <label>Pane style 1</label>
+                    </pane_style_1>
+					<pane_style_2 translate="label">
+                        <value>tabularpricepane/pane_style_2.phtml</value>
+                        <label>Pane style 2</label>
+                    </pane_style_2>
+					<pane_style_3 translate="label">
+                        <value>tabularpricepane/pane_style_3.phtml</value>
+                        <label>Pane style 3</label>
+                    </pane_style_3>
+					
+					<tab_style_1 translate="label">
+                        <value>tabularpricepane/tab_style_1.phtml</value>
+                        <label>Tab style 1</label>
+                    </tab_style_1>
+					<tab_style_2 translate="label">
+                        <value>tabularpricepane/tab_style_2.phtml</value>
+                        <label>Tab style 2</label>
+                    </tab_style_2>
+					<tab_style_3 translate="label">
+                        <value>tabularpricepane/tab_style_3.phtml</value>
+                        <label>Tab style 3</label>
+                    </tab_style_3>
+                </values>
+            </template>  
+			<block_id>
+				<label>Unique Widget ID</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<source_model>tabularpricepane/filters</source_model>   
+				<description>Auto generated unique widget ID.</description>	
+			</block_id>
+        </parameters>
+    </tabularpricepane_list>
+</widgets> 

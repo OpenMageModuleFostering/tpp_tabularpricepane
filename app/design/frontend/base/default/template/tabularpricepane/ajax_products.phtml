@@ -1,0 +1,152 @@
+<?php
+/**
+ *
+ * Tabular Price Pane
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to helpdesk@ikhodal.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package     TPP_TabularPricePane
+ * @copyright   Copyright (c) 2016-2017 ikhodal (http://www.ikhodal.com).
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+	 $params = $this->getRequest()->getParams();  
+	 $_from = (isset($params["from"])?($params["from"]):0);
+	 $_to =(isset($params["to"])?($params["to"]):0); 
+	 $category_id =(isset($params["category_id"])?($params["category_id"]):0);
+	 $product_search_text =(isset($params["product_search_text"])?($params["product_search_text"]):""); 
+	 $_limit_start =(isset($params["limit_start"])?($params["limit_start"]):0);
+	 $_limit_end = $params["number_of_product_display"];
+	 $is_default_category_with_hidden = 0;
+	 if($params["hide_categorybox"]=="yes")
+		$is_default_category_with_hidden = 1;
+
+	 ?><script language='javascript'>var request_obj_<?php echo $params["vcode"]; ?> = {category_id:'<?php echo $category_id; ?>',hide_categorybox:'<?php echo $params["hide_categorybox"]; ?>',hide_searchbox:'<?php echo $params["hide_searchbox"]; ?>', hide_product_price:'<?php echo $params["hide_product_price"]; ?>', hide_product_title:'<?php echo $params["hide_product_title"]; ?>', product_price_color:'<?php echo $params["product_price_color"]; ?>', product_title_color:'<?php echo $params["product_title_color"]; ?>', price_tab_text_color:'<?php echo $params["price_tab_text_color"]; ?>',price_tab_background_color:'<?php echo $params["price_tab_background_color"]; ?>', header_text_color:'<?php echo $params["header_text_color"]; ?>', header_background_color:'<?php echo $params["header_background_color"]; ?>',display_title_price_over_image:'<?php echo $params["display_title_price_over_image"]; ?>', number_of_product_display:'<?php echo $params["number_of_product_display"]; ?>',vcode:'<?php echo $params["vcode"]; ?>'} </script><?php  
+	 if($this->getTotalProducts($_from,$_to,$category_id,$product_search_text,0,$is_default_category_with_hidden)>0){
+		$_category_res = Mage::getModel('catalog/category')->getCollection()->addAttributeToFilter('is_active',array('1'))->load();
+		if(count($_category_res)>0 && !($params["hide_searchbox"]=='yes' && $params["hide_categorybox"]=='yes')){ 
+			?> 
+			<div class="ik-product-category"> 
+				<?php if($params["hide_searchbox"]=='no'){ ?>
+					<div class="ik-search-title" >
+						<?php echo $this->__('Search'); ?><br />
+						<input type="text" name="txtSearch" placeholder="<?php echo $this->__('Search'); ?>" value="<?php echo htmlspecialchars($product_search_text); ?>" class="ik-product-search-text"  />
+					</div>
+				<?php } ?>
+				
+				<?php if($params["hide_categorybox"]=='no'){ ?>
+					<div class="ik-search-category" >
+						<?php echo $this->__('Category'); ?><br />
+						<select name="drpCategory" style="padding:3px !important; margin:0px !important; height:26px !important; border:1px solid #ccc !important" class="ik-drp-product-category" >
+							<option value="0"><?php echo $this->__('All') ?></option>
+							<?php
+								foreach($_category_res as $_category){
+									$_category = $_category->load(); 
+									$_category_name = $_category->getName();
+									$_category_id = $_category->getId();
+									if($category_id==$_category_id){
+										?><option selected="true" value="<?php echo $_category_id; ?>"><?php echo $_category_name; ?></option><?php
+									}else{
+										?><option value="<?php echo $_category_id; ?>"><?php echo $_category_name; ?></option><?php
+									}
+								}
+							?>
+						</select> 
+					</div>
+				<?php } ?>
+				
+				<div class="ik-search-button" onclick='fillProducts("<?php echo $params["vcode"]."-".$_from."-".$_to; ?>","<?php echo $_from; ?>","<?php echo $_to; ?>",request_obj_<?php echo $params["vcode"]; ?>,2)'>
+					<br /><img width="18px" alt="Search" height="18px" src="<?php echo $this->getSkinUrl('images/tpp/searchicon.png') ?>" />
+				</div>
+				<div class="clrb"></div>
+			</div>
+		 <?php
+		}
+	} 
+	$_total_products = $this->getTotalProducts($_from,$_to,$category_id,$product_search_text,1,$is_default_category_with_hidden);
+	if($_total_products<=0){
+		?><div class="ik-product-no-items"><?php echo $this->__('No products found.') ?></div><?php
+		die();
+	} 
+	$collection = $this->loadFilteredProducts();
+	foreach($collection as $_product){
+		$_product = $_product->load();  
+		?>
+		<div class='ik-product-item pid-<?php echo $_product->getId(); ?>'> 
+			<div class='ik-product-image' onmouseout="pr_item_image_mouseout(this)" onmouseover="pr_item_image_mousehover(this)">
+				<a href="<?php echo $_product->getProductUrl(); ?>">
+					<div class="ov-layer" > 
+						 <?php if($params["display_title_price_over_image"]=='yes'){ ?> 
+								<div class='ik-overlay-product-content'>
+									<?php if($params["hide_product_title"]=='no'){ ?> 
+										<div class='ik-product-name' style="color:<?php echo $params["product_title_color"]; ?>" >
+											 <?php echo $_product->getName(); ?> 
+										</div>
+									<?php } ?> 
+									<?php if($params["hide_product_price"]=='no'){ ?> 
+										<div class='ik-product-sale-price' style="color:<?php echo $params["product_price_color"]; ?>" >
+											<?php echo Mage::helper('core')->currency($_product->getFinalPrice(), true, true); ?>
+										</div>
+									<?php } ?> 
+									<?php if($_product->isSaleable()){ ?>
+										<p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn-crt" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+									<?php } ?>
+									<div class="clr"></div>
+								</div>
+								<div class="clr"></div>
+						<?php } ?> 
+					</div> 
+					<div class="clr"></div>
+				</a>
+				<div class="clr"></div>
+				<a href="<?php echo $_product->getProductUrl(); ?>">
+					<img src = "<?php echo Mage::helper('catalog/image')->init($_product, 'small_image')->resize(250); ?>" />
+				</a>  
+			</div>  
+			<?php if($params["display_title_price_over_image"]=='no'){ ?> 
+				<div class='ik-product-content'>
+					<?php if($params["hide_product_title"]=='no'){ ?> 
+						<div class='ik-product-name'>
+							<a href="<?php echo $_product->getProductUrl(); ?>" style="color:<?php echo $params["product_title_color"]; ?>" >
+								<?php echo $_product->getName(); ?>
+							</a>	
+						</div>
+					<?php } ?>	
+					
+					<?php if($params["hide_product_price"]=='no'){ ?> 
+						<div class='ik-product-sale-price' style="color:<?php echo $params["product_price_color"]; ?>">
+							<?php  
+							echo Mage::helper('core')->currency($_product->getFinalPrice(), true, true); ?>
+						</div>
+					<?php } ?>	 
+					<?php if($_product->isSaleable()){ ?>
+						<p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn-crt" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+					<?php } ?>
+				</div>	
+			<?php } ?> 
+		</div> 
+		<?php 
+	}
+	if($_total_products>$params["number_of_product_display"]){ ?>
+			<div class="clr"></div>
+			<div class='ik-product-load-more'  align="center" onclick='loadMoreProducts("<?php echo $params["from"]; ?>","<?php echo $params["to"]; ?>","<?php echo $_limit_start+$_limit_end; ?>","<?php echo $params["vcode"]."-".$params["from"]."-".$params["to"]; ?>","<?php echo $_total_products; ?>",request_obj_<?php echo $params["vcode"]; ?>)'>
+				<?php echo $this->__('Load More') ?>
+			</div>
+		<?php  
+	}else{
+		?><div class="clr"></div><?php
+	}   
+?>
