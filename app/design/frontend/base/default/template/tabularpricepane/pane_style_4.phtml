@@ -42,7 +42,7 @@ var request_obj_<?php echo $vcode; ?> = {
 	vcode:'<?php echo $vcode; ?>'
 }</script> 
 <?php $_price_list = $this->getPriceTabArray(); ?>
- <div id="tabularpricepane" style="width:<?php echo $this->_config["tp_widget_width"]; ?>"  class="pane_style_3 <?php echo ((trim($this->_config["display_title_price_over_image"])=="yes")?"disp_title_over_img":""); ?>">
+ <div id="tabularpricepane" style="width:<?php echo $this->_config["tp_widget_width"]; ?>"  class="pane_style_4 <?php echo ((trim($this->_config["display_title_price_over_image"])=="yes")?"disp_title_over_img":""); ?>">
 	<?php if($this->_config["hide_widget_title"]=="no"){ ?>
 		<div class="ik-price-tab-title-head" style="background-color:<?php echo $this->_config["header_background_color"]; ?>;color:<?php echo $this->_config["header_text_color"]; ?>"  >
 			<?php echo $this->_config["widget_title"]; ?>   

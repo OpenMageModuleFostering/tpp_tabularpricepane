@@ -82,9 +82,7 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 			'header_text_color'=>$this->getData('header_text_color'),
 			'header_background_color'=>$this->getData('header_background_color'),
 			'display_title_price_over_image'=>$this->getData('display_title_price_over_image'), 
-			'hide_widget_title'=>$this->getData('hide_widget_title'),
-			'hide_searchbox'=>$this->getData('hide_searchbox'),
-			'hide_categorybox'=>$this->getData('hide_categorybox'),
+			'hide_widget_title'=>$this->getData('hide_widget_title'), 
 			'hide_product_title'=>$this->getData('hide_product_title'),
 			'hide_product_price'=>$this->getData('hide_product_price'),
 			'block_id'=>$this->getData('block_id'), 
@@ -155,14 +153,13 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 	*/
 	public function loadMoreFilteredProducts(){
 		$params = $this->getRequest()->getParams();  
-		$_from = (isset($params["from"])?($params["from"]):0);
-		$_to =(isset($params["to"])?($params["to"]):0); 
-		$_total =(isset($params["total"])?($params["total"]):0);
-		$category_id =(isset($params["category_id"])?($params["category_id"]):0);
-		$product_search_text =(isset($params["product_search_text"])?($params["product_search_text"]):""); 
+		$_from = (isset($params["from"])?intval($params["from"]):0);
+		$_to =(isset($params["to"])?intval($params["to"]):0); 
+		$_total =(isset($params["total"])?intval($params["total"]):0);
+		$category_id =(isset($params["category_id"])?intval($params["category_id"]):0); 
 		 
-		$_limit_start =(isset($params["limit_start"])?($params["limit_start"]):0);
-		$_limit_end = $params["number_of_product_display"]; 
+		$_limit_start =(isset($params["limit_start"])?intval($params["limit_start"]):0);
+		$_limit_end = intval($params["number_of_product_display"]); 
 				 
 		$collection = Mage::getModel('catalog/product')->getCollection(); 
 		$collection->addAttributeToSelect('image'); 
@@ -185,10 +182,8 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 				
 		}
 		 
-		if($product_search_text!=""){
-			$collection->addAttributeToFilter('name', array('like' => '%'.$product_search_text.'%')); 
-		} 
-	 	$collection->getSelect()->where('price_index.final_price <= '.$_to.' and price_index.final_price >= '.$_from)->limit($_limit_end,$_limit_start)->group('e.entity_id')->order('price_index.final_price', 'asc');
+	 
+	 	$collection->getSelect()->where('price_index.min_price <= '.$_to.' and price_index.min_price >= '.$_from)->limit($_limit_end,$_limit_start)->group('e.entity_id')->order('price_index.min_price', 'asc');
 		$collection->load();
 		return $collection;
 	}
@@ -199,13 +194,12 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 	*/
 	public function loadFilteredProducts(){
 	    $params = $this->getRequest()->getParams();  
-		$_from = (isset($params["from"])?($params["from"]):0);
-		$_to =(isset($params["to"])?($params["to"]):0); 
-		$category_id =(isset($params["category_id"])?($params["category_id"]):0);
-		$product_search_text =(isset($params["product_search_text"])?($params["product_search_text"]):""); 
-		$_limit_start =(isset($params["limit_start"])?($params["limit_start"]):0);
-		$flg_pr =(isset($params["flg_pr"])?($params["flg_pr"]):0);
-		$_limit_end = $params["number_of_product_display"];  
+		$_from = (isset($params["from"])?intval($params["from"]):0);
+		$_to =(isset($params["to"])?intval($params["to"]):0); 
+		$category_id =(isset($params["category_id"])?intval($params["category_id"]):0); 
+		$_limit_start =(isset($params["limit_start"])?intval($params["limit_start"]):0);
+		$flg_pr =(isset($params["flg_pr"])?intval($params["flg_pr"]):0);
+		$_limit_end = intval($params["number_of_product_display"]);  
 		 
 		$collection = Mage::getModel('catalog/product')->getCollection(); 
 		$collection->addAttributeToSelect('image'); 
@@ -226,11 +220,8 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 				$collection->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'inner')
 					->addAttributeToFilter('category_id', array('in' => $_all_active_category)); 
 		} 
-		
-		if($product_search_text!=""){
-			$collection->addAttributeToFilter('name', array('like' => '%'.$product_search_text.'%')); 
-		}
-		$collection->getSelect()->where('price_index.final_price <= '.$_to.' and price_index.final_price >= '.$_from)->limit($_limit_end,$_limit_start)->group('e.entity_id')->order('price_index.final_price', 'asc');
+		 
+		$collection->getSelect()->where('price_index.min_price <= '.$_to.' and price_index.min_price >= '.$_from)->limit($_limit_end,$_limit_start)->group('e.entity_id')->order('price_index.min_price', 'asc');
 		$collection->load();
 		return $collection;
 	}
@@ -239,7 +230,7 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 	 * Returns the count of searched products.
 	 * @return int
 	*/
-	function getTotalProducts($_from=0,$_to=0,$category_id,$product_search_text,$c_flg,$is_default_category_with_hidden) {  
+	function getTotalProducts($_from=0,$_to=0,$category_id,$c_flg,$is_default_category_with_hidden) {  
 		$collection = Mage::getModel('catalog/product')->getCollection(); 
 		$collection->addAttributeToSelect('image'); 
 		$collection->addStoreFilter();
@@ -261,12 +252,8 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
 					->addAttributeToFilter('category_id', array('in' => $_all_active_category));
 				
 		}
-		
-		$_product_text_filter_query = "";
-		if($product_search_text!="" && $c_flg==1){
-			$collection->addAttributeToFilter('name', array('like' => '%'.$product_search_text.'%')); 
-		} 
-		$collection->getSelect()->where('price_index.final_price <= '.$_to.' and price_index.final_price >= '.$_from)->group('e.entity_id'); 
+		 
+		$collection->getSelect()->where('price_index.min_price <= '.$_to.' and price_index.min_price >= '.$_from)->group('e.entity_id'); 
 		return $collection->count(); 
 	}	
 	
@@ -278,9 +265,7 @@ class TPP_TabularPricePane_Block_List extends Mage_Catalog_Block_Product_Abstrac
     { 
 		Mage::getSingleton('cataloginventory/stock')->addInStockFilterToCollection($collection);
 		$collection->addAttributeToFilter('status', array('eq' => 1));  
-		$collection->joinField('qty','cataloginventory/stock_item','qty','product_id=entity_id','{{table}}.stock_id=1','left')
-					->addAttributeToFilter('qty', array('gt' => 0));
-		$collection->addAttributeToFilter('type_id', array('in' => array('downloadable','virtual','simple')));		 	
+			 	
 	    return $collection
             ->addMinimalPrice()
             ->addFinalPrice()

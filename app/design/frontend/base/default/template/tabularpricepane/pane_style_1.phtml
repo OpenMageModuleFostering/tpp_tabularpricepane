@@ -24,9 +24,25 @@
  */
  
 $vcode = $this->getUCode(); ?> 
-<script type='text/javascript' language='javascript'> var default_category_id_<?php echo $vcode; ?> = '<?php echo $this->_config["category_id"]; ?>'; var request_obj_<?php echo $vcode; ?> = { category_id:'<?php echo $this->_config["category_id"]; ?>',hide_categorybox:'<?php echo $this->_config["hide_categorybox"]; ?>',hide_searchbox:'<?php echo $this->_config["hide_searchbox"]; ?>', hide_product_price:'<?php echo $this->_config["hide_product_price"]; ?>',price_difference:'<?php echo $this->_config["price_difference"]; ?>', hide_product_title:'<?php echo $this->_config["hide_product_title"]; ?>',product_price_color:'<?php echo $this->_config["price_text_color"]; ?>', product_title_color:'<?php echo $this->_config["title_text_color"]; ?>',price_tab_text_color:'<?php echo $this->_config["price_tab_text_color"]; ?>', price_tab_background_color:'<?php echo $this->_config["price_tab_background_color"]; ?>',header_text_color:'<?php echo $this->_config["header_text_color"]; ?>', header_background_color:'<?php echo $this->_config["header_background_color"]; ?>',display_title_price_over_image:'<?php echo $this->_config["display_title_price_over_image"]; ?>', number_of_product_display:'<?php echo $this->_config["number_of_product_display"]; ?>', vcode:'<?php echo $vcode; ?>'}</script> 
+<script type='text/javascript' language='javascript'> 
+var default_category_id_<?php echo $vcode; ?> = '<?php echo $this->_config["category_id"]; ?>'; 
+var request_obj_<?php echo $vcode; ?> = { 
+	category_id:'<?php echo $this->_config["category_id"]; ?>', 
+	hide_product_price:'<?php echo $this->_config["hide_product_price"]; ?>',
+	price_difference:'<?php echo $this->_config["price_difference"]; ?>', 
+	hide_product_title:'<?php echo $this->_config["hide_product_title"]; ?>',
+	product_price_color:'<?php echo $this->_config["price_text_color"]; ?>', 
+	product_title_color:'<?php echo $this->_config["title_text_color"]; ?>',
+	price_tab_text_color:'<?php echo $this->_config["price_tab_text_color"]; ?>', 
+	price_tab_background_color:'<?php echo $this->_config["price_tab_background_color"]; ?>',
+	header_text_color:'<?php echo $this->_config["header_text_color"]; ?>', 
+	header_background_color:'<?php echo $this->_config["header_background_color"]; ?>',
+	display_title_price_over_image:'<?php echo $this->_config["display_title_price_over_image"]; ?>', 
+	number_of_product_display:'<?php echo $this->_config["number_of_product_display"]; ?>', 
+	vcode:'<?php echo $vcode; ?>'
+}</script> 
 <?php $_price_list = $this->getPriceTabArray(); ?>
- <div id="tabularpricepane" style="width:<?php echo $this->_config["tp_widget_width"]; ?>"  class="<?php echo ((trim($this->_config["display_title_price_over_image"])=="yes")?"disp_title_over_img":""); ?>">
+ <div id="tabularpricepane" style="width:<?php echo $this->_config["tp_widget_width"]; ?>"  class="pane_style_1 <?php echo ((trim($this->_config["display_title_price_over_image"])=="yes")?"disp_title_over_img":""); ?>">
 	<?php if($this->_config["hide_widget_title"]=="no"){ ?>
 		<div class="ik-price-tab-title-head" style="background-color:<?php echo $this->_config["header_background_color"]; ?>;color:<?php echo $this->_config["header_text_color"]; ?>"  >
 			<?php echo $this->_config["widget_title"]; ?>   

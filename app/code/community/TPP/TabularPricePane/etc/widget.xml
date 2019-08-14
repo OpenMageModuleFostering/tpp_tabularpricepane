@@ -140,7 +140,7 @@
 				<visible>1</visible>
 				<required>1</required>
 				<type>text</type>
-				<value>#19D56E</value>
+				<value>#46A5E0</value>
 				<description>Add color code or color name for widget heading background.</description>
 			</header_background_color>
 			
@@ -187,42 +187,7 @@
 					</yes>
 				</values>
 				<description>Select "Yes" to hide widget heading. Default is "No" to display it.</description>
-			</hide_widget_title>
-			
-			<hide_searchbox>
-				<label>Hide search textbox?</label>				
-				<visible>1</visible>
-				<required>0</required>
-				<type>select</type>
-				<values>
-					<no translate="label">
-						<label>No</label>
-						<value>no</value>
-					</no>
-					<yes translate="label">
-						<label>Yes</label>
-						<value>yes</value>
-					</yes>  
-				</values>
-				<description>Select "Yes" to hide search textbox field. Default is "No" to display it.</description>
-			</hide_searchbox>
-			<hide_categorybox>
-				<label>Hide category dropdown?</label>				
-				<visible>1</visible>
-				<required>0</required>
-				<type>select</type>
-				<values>
-					<no translate="label">
-						<label>No</label>
-						<value>no</value>
-					</no>
-					<yes translate="label">
-						<label>Yes</label>
-						<value>yes</value>
-					</yes>
-				</values>
-				<description>Select "Yes" to hide category dropdown field. Default is "No" to display it.</description>
-			</hide_categorybox> 
+			</hide_widget_title> 
 			
 			<hide_product_title>
 				<label>Hide product title?</label>				
@@ -276,20 +241,11 @@
 					<pane_style_3 translate="label">
                         <value>tabularpricepane/pane_style_3.phtml</value>
                         <label>Pane style 3</label>
-                    </pane_style_3>
-					
-					<tab_style_1 translate="label">
-                        <value>tabularpricepane/tab_style_1.phtml</value>
-                        <label>Tab style 1</label>
-                    </tab_style_1>
-					<tab_style_2 translate="label">
-                        <value>tabularpricepane/tab_style_2.phtml</value>
-                        <label>Tab style 2</label>
-                    </tab_style_2>
-					<tab_style_3 translate="label">
-                        <value>tabularpricepane/tab_style_3.phtml</value>
-                        <label>Tab style 3</label>
-                    </tab_style_3>
+                    </pane_style_3> 
+					<pane_style_4 translate="label">
+                        <value>tabularpricepane/pane_style_4.phtml</value>
+                        <label>Pane style 4</label>
+                    </pane_style_4>
                 </values>
             </template>  
 			<block_id>

@@ -27,7 +27,7 @@
 <config>
 	<modules>
 		<TPP_TabularPricePane>
-			<version>0.0.0.1</version>
+			<version>1.0.0</version>
 		</TPP_TabularPricePane>
 	</modules>
 	<global>
@@ -39,7 +39,7 @@
 		<blocks>
 			 <tabularpricepane>
 				<class>TPP_TabularPricePane_Block</class>
-			 </tabularpricepane> 
+			 </tabularpricepane>  
 			 <page>
 				<rewrite>
 					<html_head>TPP_TabularPricePane_Block_Html_Head</html_head>
