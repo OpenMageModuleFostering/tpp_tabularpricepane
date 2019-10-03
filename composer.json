@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/TPP_TabularPricePane",
+    "name": "openmage-module-fostering\/tpp_tabularpricepane",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)-v3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Tabular Price Pane",
     "authors": [
