@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/TPP_TabularPricePane",
+    "name": "OpenMageModuleFostering\/TPP_TabularPricePane",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)-v3.0",
     "homepage": "",
     "description": "Tabular Price Pane",
     "authors": [
-    {
-        "name": "ikhodal Team",
-        "email": "helpdesk@ikhodal.com"
-    }
-],
+        {
+            "name": "ikhodal Team",
+            "email": "helpdesk@ikhodal.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
